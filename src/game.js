@@ -4,7 +4,7 @@ export default class Game
   {
     this.p1 = p1
     this.p2 = p2
-    this.board = [ [ null, null, null ], [ null, null, null ], [ null, null, null ] ]
+    this.board = [[null, null, null], [null, null, null], [null, null, null]]
     this.player = Math.random() < 0.5 ? this.p1 : this.p2
     this.sym = 'X'
   }
@@ -12,7 +12,7 @@ export default class Game
   turn (row, col)
   {
     col = col || row
-    this.board[ row ][ col ] = this.sym
+    this.board[row][col] = this.sym
   }
 
   nextPlayer ()
@@ -31,9 +31,9 @@ export default class Game
     let win = false
     for (let r = 0; r < 3; r++)
     {
-      const row = this.board[ r ]
-      if (row[ 0 ] === null) {continue}
-      win = win || (row[ 0 ] === row[ 1 ] && row[ 0 ] === row[ 2 ])
+      const row = this.board[r]
+      if (row[0] === null) {continue}
+      win = win || (row[0] === row[1] && row[0] === row[2])
     }
 
     return win
@@ -45,8 +45,8 @@ export default class Game
     for (let c = 0; c < 3; c++)
     {
       const col = this.board
-      if (col[ 0 ][ c ] === null) {continue}
-      win = win || (col[ 0 ][ c ] === col[ 1 ][ c ] && col[ 0 ][ c ] === col[ 2 ][ c ])
+      if (col[0][c] === null) {continue}
+      win = win || (col[0][c] === col[1][c] && col[0][c] === col[2][c])
     }
 
     return win
@@ -55,7 +55,7 @@ export default class Game
   diagWin ()
   {
     const b = this.board
-    return ((b[ 0 ][ 0 ] !== null && b[ 0 ][ 0 ] === b[ 1 ][ 1 ] && b[ 0 ][ 0 ] === b[ 2 ][ 2 ]) ||
-      (b[ 0 ][ 2 ] !== null && b[ 0 ][ 2 ] === b[ 1 ][ 1 ] && b[ 0 ][ 2 ] === b[ 2 ][ 0 ]))
+    return ((b[0][0] !== null && b[0][0] === b[1][1] && b[0][0] === b[2][2]) ||
+      (b[0][2] !== null && b[0][2] === b[1][1] && b[0][2] === b[2][0]))
   }
 }
